@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonTitle, IonToolbar } from '@ionic/angular';
@@ -16,12 +16,14 @@ export class RegisterPage {
   private auth = inject(AuthService);
   private photos = inject(PhotosService);
   private router = inject(Router);
+  private changeDetector = inject(ChangeDetectorRef);
 
-  async takePhoto(): Promise<void> { this.photo = await this.photos.prendrePhoto(); }
-  async choosePhoto(): Promise<void> { this.photo = await this.photos.choisirDepuisGalerie(); }
+  async takePhoto(): Promise<void> { this.photo = await this.photos.prendrePhoto(); this.changeDetector.detectChanges(); }
+  async choosePhoto(): Promise<void> { this.photo = await this.photos.choisirDepuisGalerie(); this.changeDetector.detectChanges(); }
 
-  submit(): void {
-    this.error = this.auth.register({ firstName: this.firstName, lastName: this.lastName, age: this.age, email: this.email, password: this.password, photo: this.photo }) || '';
+  async submit(): Promise<void> {
+    this.error = await this.auth.register({ firstName: this.firstName, lastName: this.lastName, age: this.age, email: this.email, password: this.password, photo: this.photo }) || '';
+    this.changeDetector.detectChanges();
     if (!this.error) this.router.navigateByUrl('/movies');
   }
 }
