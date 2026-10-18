@@ -7,6 +7,7 @@ import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-matching',
   templateUrl: './matching.page.html',
+  styleUrls: ['./matching.page.scss'],
   imports: [RouterLink, IonButton, IonContent, IonHeader, IonItem, IonLabel, IonList, IonTitle, IonToolbar],
 })
 export class MatchingPage implements OnInit {

@@ -9,6 +9,7 @@ import { MovieService } from '../services/movie.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.page.html',
+  styleUrls: ['./admin.page.scss'],
   imports: [FormsModule, RouterLink, IonButton, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonList, IonTitle, IonToolbar],
 })
 export class AdminPage implements OnInit {

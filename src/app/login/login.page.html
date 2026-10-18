@@ -1,15 +1,18 @@
-<ion-header><ion-toolbar color="primary"><ion-title>MovieMatch</ion-title></ion-toolbar></ion-header>
-<ion-content class="ion-padding auth-content">
-  <div class="auth-card">
-    <div class="brand-mark">MM</div>
-    <p class="eyebrow">BIENVENUE SUR</p>
-    <h1>MovieMatch</h1>
-    <p class="subtitle">Retrouvez vos films préférés et rencontrez des cinéphiles qui vous ressemblent.</p>
-    <ion-item><ion-label position="stacked">Email</ion-label><ion-input type="email" [(ngModel)]="email"></ion-input></ion-item>
-    <ion-item><ion-label position="stacked">Mot de passe</ion-label><ion-input type="password" [(ngModel)]="password"></ion-input></ion-item>
-    @if (error) { <p class="error">{{ error }}</p> }
-    <ion-button expand="block" class="ion-margin-top" (click)="submit()">Se connecter</ion-button>
-    <ion-button expand="block" fill="clear" routerLink="/register">Créer un compte</ion-button>
+<ion-header><ion-toolbar><ion-title>FRAME / 01</ion-title></ion-toolbar></ion-header>
+<ion-content>
+  <div class="login-shell">
+    <div class="brand-mark">FM</div>
+    <p class="eyebrow">Votre programmation personnelle</p>
+    <h1>Les films qui<br><em>vous ressemblent.</em></h1>
+    <p class="intro">Constituez votre playlist, puis trouvez les spectateurs qui partagent vos goûts.</p>
+    <div class="login-card">
+      <p class="card-label">ENTRER DANS LA SALLE</p>
+  <ion-item><ion-label position="stacked">Email</ion-label><ion-input type="email" [(ngModel)]="email"></ion-input></ion-item>
+  <ion-item><ion-label position="stacked">Mot de passe</ion-label><ion-input type="password" [(ngModel)]="password"></ion-input></ion-item>
+  @if (error) { <p class="error">{{ error }}</p> }
+      <ion-button expand="block" class="ion-margin-top" (click)="submit()">Se connecter <span class="arrow">→</span></ion-button>
+      <ion-button expand="block" fill="clear" routerLink="/register">Créer un compte</ion-button>
+    </div>
     <p class="hint">Démo admin : admin&#64;movies.test / admin123</p>
   </div>
 </ion-content>

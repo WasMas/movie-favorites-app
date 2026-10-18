@@ -1,9 +1,6 @@
-<ion-header><ion-toolbar color="primary"><ion-title>Inscription</ion-title></ion-toolbar></ion-header>
-<ion-content class="ion-padding auth-content">
-  <div class="auth-card">
-  <p class="eyebrow">REJOIGNEZ LA COMMUNAUTÉ</p>
-  <h1>Créer un compte</h1>
-  <p class="subtitle">Construisez votre playlist et trouvez vos meilleurs matchs.</p>
+<ion-header><ion-toolbar><ion-title>FRAME / 02</ion-title></ion-toolbar></ion-header>
+<ion-content class="ion-padding">
+  <div class="register-shell"><p class="eyebrow">Nouveau spectateur</p><h1>Construisez<br>votre profil.</h1><p class="subhead">Une photo, quelques détails, et votre première programmation.</p>
   <ion-item><ion-label position="stacked">Prénom</ion-label><ion-input [(ngModel)]="firstName"></ion-input></ion-item>
   <ion-item><ion-label position="stacked">Nom</ion-label><ion-input [(ngModel)]="lastName"></ion-input></ion-item>
   <ion-item><ion-label position="stacked">Age</ion-label><ion-input type="number" [(ngModel)]="age"></ion-input></ion-item>
@@ -13,7 +10,7 @@
   <ion-button expand="block" fill="outline" (click)="choosePhoto()">Choisir depuis la galerie</ion-button>
   @if (photo) { <img class="profile-photo" [src]="photo" alt="Photo de profil"> }
   @if (error) { <p class="error">{{ error }}</p> }
-  <ion-button expand="block" class="ion-margin-top" (click)="submit()">S'inscrire</ion-button>
+  <ion-button expand="block" class="ion-margin-top" (click)="submit()">Créer mon profil</ion-button>
   <ion-button expand="block" fill="clear" routerLink="/login">J'ai déjà un compte</ion-button>
   </div>
 </ion-content>

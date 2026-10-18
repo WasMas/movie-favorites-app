@@ -1,6 +1,7 @@
-<ion-header><ion-toolbar color="primary"><ion-title>Administration</ion-title></ion-toolbar></ion-header>
+<ion-header><ion-toolbar><ion-title>FRAME / STUDIO</ion-title></ion-toolbar></ion-header>
 <ion-content class="ion-padding">
-  <ion-button fill="clear" routerLink="/movies">Retour au catalogue</ion-button>
+  <div class="admin-shell"><ion-button fill="clear" routerLink="/movies">← Retour au catalogue</ion-button>
+  <p class="eyebrow">Espace réalisateur</p><h1>Gérez la<br><em>programmation.</em></h1>
   <h2>Utilisateurs</h2><ion-list>@for (user of users; track user.id) { <ion-item><ion-label>{{ user.firstName }} {{ user.lastName }} ({{ user.email }})<p>{{ user.active ? 'Actif' : 'Désactivé' }}</p></ion-label><ion-button (click)="toggleUser(user)">{{ user.active ? 'Désactiver' : 'Réactiver' }}</ion-button></ion-item> }</ion-list>
   <h2>Ajouter un film</h2>
   <ion-item><ion-label position="stacked">Titre</ion-label><ion-input [(ngModel)]="title"></ion-input></ion-item>
@@ -9,5 +10,5 @@
   <ion-item><ion-label position="stacked">URL affiche</ion-label><ion-input [(ngModel)]="poster"></ion-input></ion-item>
   <ion-item><ion-label position="stacked">Résumé</ion-label><ion-input [(ngModel)]="overview"></ion-input></ion-item>
   <ion-button expand="block" class="ion-margin-top" (click)="addMovie()">Ajouter</ion-button>
-  @if (message) { <p>{{ message }}</p> }
+  @if (message) { <p>{{ message }}</p> }</div>
 </ion-content>

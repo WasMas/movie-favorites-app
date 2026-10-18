@@ -8,6 +8,7 @@ import { PhotosService } from '../services/photos.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
   imports: [FormsModule, RouterLink, IonButton, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonTitle, IonToolbar],
 })
 export class RegisterPage {

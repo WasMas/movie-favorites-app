@@ -1,9 +1,10 @@
-<ion-header><ion-toolbar color="primary"><ion-title>Mes matchs</ion-title></ion-toolbar></ion-header>
+<ion-header><ion-toolbar><ion-title>FRAME / MATCHING</ion-title></ion-toolbar></ion-header>
 <ion-content class="ion-padding">
-  <ion-button fill="clear" routerLink="/movies">Retour au catalogue</ion-button>
-  <h2>Utilisateurs avec plus de 75% de goûts communs</h2>
+  <div class="matching-shell"><ion-button fill="clear" routerLink="/movies">← Retour au catalogue</ion-button>
+  <p class="eyebrow">Projection privée</p><h1>Des goûts<br><em>en commun.</em></h1>
+  <p class="subhead">Ces spectateurs ont plus de 75% de films favoris en commun avec vous.</p>
   @if (!matches.length) { <p>Aucun match trouvé pour le moment. Ajoutez plus de favoris !</p> }
   <ion-list>@for (match of matches; track match.user.id) {
     <ion-item><ion-label><h2>{{ match.user.firstName }} {{ match.user.lastName }}</h2><p>{{ match.rate }}% de films en commun</p></ion-label></ion-item>
-  }</ion-list>
+  }  </ion-list></div>
 </ion-content>
