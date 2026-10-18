@@ -36,6 +36,86 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
 
+body {
+  background: var(--ion-background-color);
+}
+
+ion-toolbar {
+  --background: #17171d;
+  --color: #ffffff;
+}
+
+ion-content {
+  --background: radial-gradient(circle at top right, #29202a 0, #101014 42%);
+}
+
+ion-item {
+  --background: #1a1a21;
+  --border-color: #30303a;
+  --padding-start: 16px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+ion-button {
+  --border-radius: 10px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+h1, h2 {
+  letter-spacing: -0.02em;
+}
+
+.auth-content {
+  --background: linear-gradient(145deg, #14141a 0%, #25161d 100%);
+}
+
+.auth-card {
+  max-width: 460px;
+  margin: 7vh auto 0;
+  padding: 28px 24px;
+  background: rgba(26, 26, 33, 0.92);
+  border: 1px solid #30303a;
+  border-radius: 18px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
+}
+
+.brand-mark {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  margin-bottom: 22px;
+  border-radius: 14px;
+  background: var(--ion-color-primary);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.eyebrow {
+  margin-bottom: 8px;
+  color: #ff6b72;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.subtitle {
+  color: #b5b5c0;
+  line-height: 1.5;
+}
+
+.hero {
+  max-width: 720px;
+  margin: 12px auto 24px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+}
+
 .error { color: var(--ion-color-danger); }
 .hint { color: var(--ion-color-medium); font-size: 0.9rem; }
 .profile-photo { display: block; width: 120px; height: 120px; object-fit: cover; border-radius: 50%; margin: 16px auto; }
