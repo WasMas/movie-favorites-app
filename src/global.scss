@@ -25,13 +25,54 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+/* ---------- Base ---------- */
+html { scroll-behavior: smooth; }
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+::selection { background: rgba(232, 137, 50, 0.3); }
+
+/* ---------- Existing helpers ---------- */
 .error { color: var(--ion-color-danger); }
 .hint { color: var(--ion-color-medium); font-size: 0.9rem; }
 .profile-photo { display: block; width: 120px; height: 120px; object-fit: cover; border-radius: 50%; margin: 16px auto; }
 
+/* ---------- Header ---------- */
 ion-toolbar { --background: #1b2028; --color: #f3efe7; --border-width: 0; }
+ion-header { box-shadow: 0 4px 18px rgba(27, 32, 40, 0.25); }
+ion-header::after { display: none; }
+
+/* ---------- Page ---------- */
 ion-content { --background: #f3efe7; }
-ion-card { --background: #fffdf8; border: 1px solid rgba(27, 32, 40, 0.08); border-radius: 4px; box-shadow: 0 12px 26px rgba(27, 32, 40, 0.1); }
-ion-item { --background: transparent; --border-color: rgba(27, 32, 40, 0.16); }
-ion-button { --border-radius: 3px; font-weight: 700; letter-spacing: 0.02em; }
 h1, h2, p { color: #1b2028; }
+
+/* ---------- Cards ---------- */
+ion-card {
+  --background: #fffdf8;
+  border: 1px solid rgba(27, 32, 40, 0.06);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(27, 32, 40, 0.06), 0 12px 28px rgba(27, 32, 40, 0.08);
+}
+
+/* ---------- Forms ---------- */
+ion-item {
+  --background: transparent;
+  --border-color: rgba(27, 32, 40, 0.16);
+  --highlight-color-focused: #e88932;
+  transition: border-color 0.2s ease;
+}
+
+/* ---------- Buttons ---------- */
+ion-button {
+  --border-radius: 8px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+ion-button:not([disabled]):hover { transform: translateY(-1px); }
+ion-button:not([disabled]):active { transform: translateY(0); }
+
+/* ---------- Accessibility ---------- */
+:focus-visible { outline: 2px solid #e88932; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}

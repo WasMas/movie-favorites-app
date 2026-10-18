@@ -12,15 +12,33 @@ import { MovieService } from '../services/movie.service';
   imports: [RouterLink, IonAvatar, IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonRow, IonTitle, IonToolbar],
 })
 export class MoviesPage implements OnInit {
+  readonly allGenres = 'Tous';
+
   movies: Movie[] = [];
   favorites: number[] = [];
   userName = '';
   userPhoto?: string;
   isAdmin = false;
+  searchText = '';
+  selectedGenre = this.allGenres;
   private movieService = inject(MovieService);
   private auth = inject(AuthService);
   private router = inject(Router);
   private changeDetector = inject(ChangeDetectorRef);
+
+  get genres(): string[] {
+    const unique = new Set(this.movies.map((movie) => movie.genre));
+    return [this.allGenres, ...Array.from(unique).sort()];
+  }
+
+  get filteredMovies(): Movie[] {
+    const term = this.searchText.trim().toLowerCase();
+    return this.movies.filter((movie) => {
+      const matchesGenre = this.selectedGenre === this.allGenres || movie.genre === this.selectedGenre;
+      const matchesText = !term || movie.title.toLowerCase().includes(term);
+      return matchesGenre && matchesText;
+    });
+  }
 
   async ngOnInit(): Promise<void> {
     const user = await this.auth.getCurrentUserAsync();
@@ -35,6 +53,16 @@ export class MoviesPage implements OnInit {
       console.error('Impossible de charger les films Firebase.', error);
       this.movies = [];
     }
+    this.changeDetector.detectChanges();
+  }
+
+  onSearch(event: Event): void {
+    this.searchText = (event.target as HTMLInputElement).value;
+    this.changeDetector.detectChanges();
+  }
+
+  selectGenre(genre: string): void {
+    this.selectedGenre = genre;
     this.changeDetector.detectChanges();
   }
 
