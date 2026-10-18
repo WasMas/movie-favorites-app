@@ -12,6 +12,7 @@ ion-card img { display: block; height: 300px; width: 100%; object-fit: cover; fi
 .genre { margin: 0 0 6px; color: #d96c55; }
 ion-card-title { font-size: 1.35rem; }
 .overview { min-height: 48px; color: #59616b; line-height: 1.45; }
+.overview + ion-button { margin: -8px 0 8px; }
 .wordmark { color: #e88932; font-weight: 900; letter-spacing: 0.1em; }
 .profile-avatar { width: 34px; height: 34px; margin: 0 8px 0 4px; border: 2px solid #e88932; background: #f2c14e; color: #1b2028; }
 .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
