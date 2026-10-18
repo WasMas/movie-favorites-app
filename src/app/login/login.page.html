@@ -1,0 +1,11 @@
+<ion-header><ion-toolbar color="primary"><ion-title>MovieMatch</ion-title></ion-toolbar></ion-header>
+<ion-content class="ion-padding">
+  <h1>Mes films préférés</h1>
+  <p>Connectez-vous pour construire votre playlist.</p>
+  <ion-item><ion-label position="stacked">Email</ion-label><ion-input type="email" [(ngModel)]="email"></ion-input></ion-item>
+  <ion-item><ion-label position="stacked">Mot de passe</ion-label><ion-input type="password" [(ngModel)]="password"></ion-input></ion-item>
+  @if (error) { <p class="error">{{ error }}</p> }
+  <ion-button expand="block" class="ion-margin-top" (click)="submit()">Se connecter</ion-button>
+  <ion-button expand="block" fill="clear" routerLink="/register">Créer un compte</ion-button>
+  <p class="hint">Compte admin de démonstration : admin&#64;movies.test / admin123</p>
+</ion-content>

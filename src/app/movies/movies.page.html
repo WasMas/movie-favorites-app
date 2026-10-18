@@ -1,0 +1,14 @@
+<ion-header><ion-toolbar color="primary"><ion-title>Bonjour {{ userName }}</ion-title><ion-buttons slot="end"><ion-button (click)="logout()">Déconnexion</ion-button></ion-buttons></ion-toolbar></ion-header>
+<ion-content class="ion-padding">
+  <div class="menu"><ion-button size="small" routerLink="/matching">Matching</ion-button><ion-button size="small" routerLink="/admin">Admin</ion-button></div>
+  <h2>Catalogue</h2><p>Ajoutez vos films préférés à votre playlist.</p>
+  <ion-grid><ion-row>
+    @for (movie of movies; track movie.id) {
+      <ion-col size="12" size-md="6">
+        <ion-card><img [src]="movie.poster" [alt]="movie.title"><ion-card-header><ion-card-title>{{ movie.title }} ({{ movie.year }})</ion-card-title></ion-card-header>
+          <ion-card-content><p>{{ movie.genre }}</p><p>{{ movie.overview }}</p><ion-button expand="block" [color]="isFavorite(movie.id) ? 'warning' : 'primary'" (click)="toggleFavorite(movie)">{{ isFavorite(movie.id) ? 'Retirer des favoris' : 'Ajouter aux favoris' }}</ion-button></ion-card-content>
+        </ion-card>
+      </ion-col>
+    }
+  </ion-row></ion-grid>
+</ion-content>

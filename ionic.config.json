@@ -1,0 +1,7 @@
+{
+  "name": "tp2-gl-b-soir",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
