@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>FRAME / PROFIL</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="profile-shell">
+    <ion-button fill="clear" routerLink="/movies">← Retour au catalogue</ion-button>
+    <p class="eyebrow">Votre identité de spectateur</p>
+    <h1>Mon<br><em>profil.</em></h1>
+
+    @if (user) {
+      <div class="profile-card">
+        @if (user.photo) {
+          <img class="large-avatar" [src]="user.photo" alt="Photo de profil">
+        } @else {
+          <div class="large-avatar initials">{{ user.firstName.charAt(0) }}</div>
+        }
+        <div class="photo-actions">
+          <ion-button size="small" fill="outline" (click)="takePhoto()">Prendre une photo</ion-button>
+          <ion-button size="small" fill="outline" (click)="choosePhoto()">Galerie</ion-button>
+        </div>
+      </div>
+
+      <ion-item><ion-label position="stacked">Prénom</ion-label><ion-input [(ngModel)]="user.firstName"></ion-input></ion-item>
+      <ion-item><ion-label position="stacked">Nom</ion-label><ion-input [(ngModel)]="user.lastName"></ion-input></ion-item>
+      <ion-item><ion-label position="stacked">Age</ion-label><ion-input type="number" [(ngModel)]="user.age"></ion-input></ion-item>
+      <ion-item><ion-label position="stacked">Email</ion-label><ion-input type="email" [(ngModel)]="user.email"></ion-input></ion-item>
+      @if (error) { <p class="error">{{ error }}</p> }
+      @if (message) { <p class="success">{{ message }}</p> }
+      <ion-button expand="block" class="ion-margin-top" (click)="save()">Enregistrer les changements</ion-button>
+      <ion-button expand="block" fill="clear" color="danger" (click)="logout()">Se déconnecter</ion-button>
+    }
+  </div>
+</ion-content>
