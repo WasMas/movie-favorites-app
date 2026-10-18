@@ -1,6 +1,6 @@
 <ion-header><ion-toolbar color="primary"><ion-title>Bonjour {{ userName }}</ion-title><ion-buttons slot="end"><ion-button (click)="logout()">Déconnexion</ion-button></ion-buttons></ion-toolbar></ion-header>
 <ion-content class="ion-padding">
-  <div class="menu"><ion-button size="small" routerLink="/matching">Matching</ion-button><ion-button size="small" routerLink="/admin">Admin</ion-button></div>
+  <div class="menu"><ion-button size="small" routerLink="/matching">Matching</ion-button>@if (isAdmin) { <ion-button size="small" routerLink="/admin">Admin</ion-button> }</div>
   <h2>Catalogue</h2><p>Ajoutez vos films préférés à votre playlist.</p>
   <ion-grid><ion-row>
     @for (movie of movies; track movie.id) {

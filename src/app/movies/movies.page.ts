@@ -15,6 +15,7 @@ export class MoviesPage implements OnInit {
   movies: Movie[] = [];
   favorites: number[] = [];
   userName = '';
+  isAdmin = false;
   private movieService = inject(MovieService);
   private auth = inject(AuthService);
   private router = inject(Router);
@@ -23,6 +24,7 @@ export class MoviesPage implements OnInit {
     const user = this.auth.getCurrentUser();
     if (!user) { this.router.navigateByUrl('/login'); return; }
     this.userName = user.firstName;
+    this.isAdmin = user.role === 'admin';
     this.favorites = user.favoriteMovieIds;
     this.movies = this.movieService.getMovies();
   }
