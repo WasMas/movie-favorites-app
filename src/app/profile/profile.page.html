@@ -10,7 +10,9 @@
     <p class="eyebrow">Votre identité de spectateur</p>
     <h1>Mon<br><em>profil.</em></h1>
 
-    @if (user) {
+    @if (loading) {
+      <p class="profile-loading">Chargement du profil...</p>
+    } @else if (user) {
       <div class="profile-card">
         @if (user.photo) {
           <img class="large-avatar" [src]="user.photo" alt="Photo de profil">

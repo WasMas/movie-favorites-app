@@ -8,12 +8,12 @@ export interface Movie {
 }
 
 export interface AppUser {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   age: number;
   email: string;
-  password: string;
+  password?: string;
   photo?: string;
   favoriteMovieIds: number[];
   active: boolean;
