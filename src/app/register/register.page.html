@@ -5,7 +5,8 @@
   <ion-item><ion-label position="stacked">Age</ion-label><ion-input type="number" [(ngModel)]="age"></ion-input></ion-item>
   <ion-item><ion-label position="stacked">Email</ion-label><ion-input type="email" [(ngModel)]="email"></ion-input></ion-item>
   <ion-item><ion-label position="stacked">Mot de passe</ion-label><ion-input type="password" [(ngModel)]="password"></ion-input></ion-item>
-  <ion-button expand="block" fill="outline" class="ion-margin-top" (click)="takePhoto()">Prendre ma photo</ion-button>
+  <ion-button expand="block" fill="outline" class="ion-margin-top" (click)="takePhoto()">Prendre une photo</ion-button>
+  <ion-button expand="block" fill="outline" (click)="choosePhoto()">Choisir depuis la galerie</ion-button>
   @if (photo) { <img class="profile-photo" [src]="photo" alt="Photo de profil"> }
   @if (error) { <p class="error">{{ error }}</p> }
   <ion-button expand="block" class="ion-margin-top" (click)="submit()">S'inscrire</ion-button>

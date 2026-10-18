@@ -17,6 +17,7 @@ export class RegisterPage {
   private router = inject(Router);
 
   async takePhoto(): Promise<void> { this.photo = await this.photos.prendrePhoto(); }
+  async choosePhoto(): Promise<void> { this.photo = await this.photos.choisirDepuisGalerie(); }
 
   submit(): void {
     this.error = this.auth.register({ firstName: this.firstName, lastName: this.lastName, age: this.age, email: this.email, password: this.password, photo: this.photo }) || '';
