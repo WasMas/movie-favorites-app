@@ -15,6 +15,9 @@ export class MoviesPage implements OnInit {
   movies: Movie[] = [];
   favorites: number[] = [];
   userName = '';
+  userEmail = '';
+  profilePhoto?: string;
+  profileOpen = false;
   isAdmin = false;
   private movieService = inject(MovieService);
   private auth = inject(AuthService);
@@ -24,6 +27,8 @@ export class MoviesPage implements OnInit {
     const user = this.auth.getCurrentUser();
     if (!user) { this.router.navigateByUrl('/login'); return; }
     this.userName = user.firstName;
+    this.userEmail = user.email;
+    this.profilePhoto = user.photo;
     this.isAdmin = user.role === 'admin';
     this.favorites = user.favoriteMovieIds;
     this.movies = this.movieService.getMovies();
@@ -38,5 +43,6 @@ export class MoviesPage implements OnInit {
   }
 
   isFavorite(id: number): boolean { return this.favorites.includes(id); }
+  toggleProfile(): void { this.profileOpen = !this.profileOpen; }
   logout(): void { this.auth.logout(); this.router.navigateByUrl('/login'); }
 }

@@ -13,3 +13,12 @@ ion-card img { display: block; height: 300px; width: 100%; object-fit: cover; fi
 ion-card-title { font-size: 1.35rem; }
 .overview { min-height: 48px; color: #59616b; line-height: 1.45; }
 .wordmark { color: #e88932; font-weight: 900; letter-spacing: 0.1em; }
+.profile-wrap { position: relative; margin-right: 10px; }
+.profile-trigger { display: grid; place-items: center; width: 38px; height: 38px; padding: 0; border: 2px solid #e88932; border-radius: 50%; background: #f3efe7; color: #1b2028; cursor: pointer; overflow: hidden; font-weight: 900; }
+.profile-trigger img { width: 100%; height: 100%; object-fit: cover; }
+.profile-menu { position: absolute; z-index: 10; top: 48px; right: 0; width: 210px; padding: 16px; background: #fffdf8; border-top: 3px solid #e88932; box-shadow: 0 14px 30px rgba(27, 32, 40, 0.2); }
+.profile-name, .profile-email { margin: 0; }
+.profile-name { color: #1b2028; font-weight: 800; }
+.profile-email { margin-top: 4px; color: #59616b; font-size: 0.75rem; overflow: hidden; text-overflow: ellipsis; }
+.logout-button { width: 100%; margin-top: 14px; padding: 9px 0; border: 0; border-top: 1px solid rgba(27, 32, 40, 0.14); background: transparent; color: #d96c55; cursor: pointer; font-weight: 800; text-align: left; }
+.logout-button span { float: right; font-size: 1.1rem; }

@@ -1,4 +1,15 @@
-<ion-header><ion-toolbar><ion-title><span class="wordmark">FRAME</span> / CATALOGUE</ion-title><ion-buttons slot="end"><ion-button (click)="logout()">Quitter</ion-button></ion-buttons></ion-toolbar></ion-header>
+<ion-header><ion-toolbar><ion-title><span class="wordmark">FRAME</span> / CATALOGUE</ion-title><ion-buttons slot="end"><div class="profile-wrap">
+  <button class="profile-trigger" type="button" aria-label="Ouvrir le menu du profil" (click)="toggleProfile()">
+    @if (profilePhoto) { <img [src]="profilePhoto" alt="Photo de profil"> } @else { <span>{{ userName.charAt(0) }}</span> }
+  </button>
+  @if (profileOpen) {
+    <div class="profile-menu">
+      <p class="profile-name">{{ userName }}</p>
+      <p class="profile-email">{{ userEmail }}</p>
+      <button class="logout-button" type="button" (click)="logout()">Se déconnecter <span>→</span></button>
+    </div>
+  }
+</div></ion-buttons></ion-toolbar></ion-header>
 <ion-content class="ion-padding">
   <div class="catalogue-intro"><p class="eyebrow">Bonjour {{ userName }}</p><h1>Votre salle,<br><em>vos choix.</em></h1><p>Ajoutez les films qui méritent une place dans votre playlist.</p></div>
   <div class="menu"><ion-button size="small" routerLink="/matching">Voir mes matchs</ion-button>@if (isAdmin) { <ion-button size="small" fill="outline" routerLink="/admin">Administration</ion-button> }</div>
