@@ -40,5 +40,8 @@ export class MoviesPage implements OnInit {
   }
 
   isFavorite(id: number): boolean { return this.favorites.includes(id); }
-  logout(): void { this.auth.logout(); this.router.navigateByUrl('/login'); }
+  logout(): void {
+    this.auth.logout();
+    this.router.navigateByUrl('/login', { replaceUrl: true });
+  }
 }
