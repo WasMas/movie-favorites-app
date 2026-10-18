@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonRow, IonTitle, IonToolbar } from '@ionic/angular';
+import { IonAvatar, IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonRow, IonTitle, IonToolbar } from '@ionic/angular';
 import { Movie } from '../models/movie.model';
 import { AuthService } from '../services/auth.service';
 import { MovieService } from '../services/movie.service';
@@ -9,15 +9,13 @@ import { MovieService } from '../services/movie.service';
   selector: 'app-movies',
   templateUrl: './movies.page.html',
   styleUrls: ['./movies.page.scss'],
-  imports: [RouterLink, IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonRow, IonTitle, IonToolbar],
+  imports: [RouterLink, IonAvatar, IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonRow, IonTitle, IonToolbar],
 })
 export class MoviesPage implements OnInit {
   movies: Movie[] = [];
   favorites: number[] = [];
   userName = '';
-  userEmail = '';
-  profilePhoto?: string;
-  profileOpen = false;
+  userPhoto?: string;
   isAdmin = false;
   private movieService = inject(MovieService);
   private auth = inject(AuthService);
@@ -27,8 +25,7 @@ export class MoviesPage implements OnInit {
     const user = this.auth.getCurrentUser();
     if (!user) { this.router.navigateByUrl('/login'); return; }
     this.userName = user.firstName;
-    this.userEmail = user.email;
-    this.profilePhoto = user.photo;
+    this.userPhoto = user.photo;
     this.isAdmin = user.role === 'admin';
     this.favorites = user.favoriteMovieIds;
     this.movies = this.movieService.getMovies();
@@ -43,6 +40,5 @@ export class MoviesPage implements OnInit {
   }
 
   isFavorite(id: number): boolean { return this.favorites.includes(id); }
-  toggleProfile(): void { this.profileOpen = !this.profileOpen; }
   logout(): void { this.auth.logout(); this.router.navigateByUrl('/login'); }
 }
