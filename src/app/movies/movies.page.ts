@@ -47,6 +47,20 @@ export class MoviesPage implements OnInit {
     this.userPhoto = user.photo;
     this.isAdmin = user.role === 'admin';
     this.favorites = user.favoriteMovieIds;
+    await this.loadMovies();
+  }
+
+  async ionViewWillEnter(): Promise<void> {
+    await this.loadMovies();
+  }
+
+  private async loadMovies(): Promise<void> {
+    const user = await this.auth.getCurrentUserAsync();
+    if (!user) {
+      await this.router.navigateByUrl('/login');
+      return;
+    }
+    this.favorites = user.favoriteMovieIds;
     try {
       this.movies = await this.movieService.getMovies();
     } catch (error) {
