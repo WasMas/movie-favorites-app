@@ -12,6 +12,11 @@ export class MovieService {
     return snapshot.docs.map((item) => item.data() as Movie);
   }
 
+  async getMovie(id: number): Promise<Movie | undefined> {
+    const movies = await this.getMovies();
+    return movies.find((movie) => movie.id === id);
+  }
+
   async addMovie(movie: Movie): Promise<void> {
     const movies = await this.getMovies();
     movie.id = movies.length ? Math.max(...movies.map((item) => item.id)) + 1 : 1;
