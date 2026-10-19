@@ -1,27 +1,49 @@
-<ion-header><ion-toolbar><ion-title><span class="wordmark">FRAME</span> / CATALOGUE</ion-title><ion-buttons slot="end"><ion-avatar class="profile-avatar" routerLink="/profile">@if (userPhoto) { <img [src]="userPhoto" [alt]="'Photo de ' + userName"> } @else { <span>{{ userName.charAt(0) }}</span> }</ion-avatar><ion-button (click)="logout()">Quitter</ion-button></ion-buttons></ion-toolbar></ion-header>
+<ion-header><ion-toolbar><ion-title><span class="wordmark">FRAME</span> / CATALOGUE</ion-title><ion-buttons
+      slot="end"><ion-avatar class="profile-avatar" routerLink="/profile">@if (userPhoto) { <img [src]="userPhoto"
+          [alt]="'Photo de ' + userName"> } @else { <span>{{ userName.charAt(0) }}</span> }</ion-avatar><ion-button
+        (click)="logout()">Quitter</ion-button></ion-buttons></ion-toolbar></ion-header>
 <ion-content class="ion-padding">
-  <div class="catalogue-intro"><p class="eyebrow">Bonjour {{ userName }}</p><h1>Votre salle,<br><em>vos choix.</em></h1><p>Ajoutez les films qui méritent une place dans votre playlist.</p></div>
-  <div class="menu"><ion-button size="small" routerLink="/matching">Voir mes matchs</ion-button>@if (isAdmin) { <ion-button size="small" fill="outline" routerLink="/admin">Administration</ion-button> }</div>
+  <div class="catalogue-intro">
+    <p class="eyebrow">Bonjour {{ userName }}</p>
+    <h1>Votre salle,<br><em>vos choix.</em></h1>
+    <p>Ajoutez les films qui méritent une place dans votre playlist.</p>
+  </div>
+  <div class="menu"><ion-button size="small" routerLink="/matching">Voir mes matchs</ion-button>@if (isAdmin) {
+    <ion-button size="small" fill="outline" routerLink="/admin">Administration</ion-button> }
+  </div>
 
   <div class="filters">
-    <input class="search-box" type="search" placeholder="Rechercher un film…" aria-label="Rechercher un film" [value]="searchText" (input)="onSearch($event)">
+    <input class="search-box" type="search" placeholder="Rechercher un film…" aria-label="Rechercher un film"
+      [value]="searchText" (input)="onSearch($event)">
     <div class="genre-chips">
       @for (genre of genres; track genre) {
-        <button type="button" class="chip" [class.active]="genre === selectedGenre" (click)="selectGenre(genre)">{{ genre }}</button>
+      <button type="button" class="chip" [class.active]="genre === selectedGenre" (click)="selectGenre(genre)">{{ genre
+        }}</button>
       }
     </div>
     <p class="result-count">{{ filteredMovies.length }} film(s)</p>
   </div>
 
   <ion-grid><ion-row>
-    @for (movie of filteredMovies; track movie.id) {
+      @for (movie of filteredMovies; track movie.id) {
       <ion-col size="12" size-md="6">
-        <ion-card><div class="poster-wrap"><img [src]="movie.poster" [alt]="movie.title"><span class="year">{{ movie.year }}</span></div><ion-card-header><p class="genre">{{ movie.genre }}</p><ion-card-title>{{ movie.title }}</ion-card-title></ion-card-header>
-          <ion-card-content><p class="overview">{{ movie.overview }}</p><ion-button fill="clear" [routerLink]="['/movies', movie.id]">Voir les détails</ion-button><ion-button expand="block" [color]="isFavorite(movie.id) ? 'warning' : 'primary'" (click)="toggleFavorite(movie)">{{ isFavorite(movie.id) ? 'Dans ma playlist' : 'Ajouter à ma playlist' }}</ion-button></ion-card-content>
+        <ion-card>
+          <div class="poster-wrap"><img [src]="movie.poster" [alt]="movie.title"><ion-chip class="year">{{ movie.year
+              }}</ion-chip></div><ion-card-header>
+            <p class="genre">{{ movie.genre }}</p><ion-card-title>{{ movie.title }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p class="overview">{{ movie.overview }}</p><ion-button fill="clear"
+              [routerLink]="['/movies', movie.id]">Voir les détails</ion-button><ion-button expand="block"
+              [color]="isFavorite(movie.id) ? 'warning' : 'primary'" (click)="toggleFavorite(movie)">{{
+              isFavorite(movie.id) ? 'Dans ma playlist' : 'Ajouter à ma playlist' }}</ion-button>
+          </ion-card-content>
         </ion-card>
       </ion-col>
-    } @empty {
-      <ion-col size="12"><p class="empty-state">Aucun film ne correspond à votre recherche.</p></ion-col>
-    }
-  </ion-row></ion-grid>
+      } @empty {
+      <ion-col size="12">
+        <p class="empty-state">Aucun film ne correspond à votre recherche.</p>
+      </ion-col>
+      }
+    </ion-row></ion-grid>
 </ion-content>
