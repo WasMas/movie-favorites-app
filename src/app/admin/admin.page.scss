@@ -5,3 +5,4 @@ h1 em { color: #e88932; font-style: normal; }
 h2 { margin-top: 30px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.08em; }
 ion-list { background: transparent; }
 ion-item { margin: 8px 0; --background: #fffdf8; }
+.genre-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }

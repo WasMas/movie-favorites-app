@@ -27,14 +27,14 @@ export class MoviesPage implements OnInit {
   private changeDetector = inject(ChangeDetectorRef);
 
   get genres(): string[] {
-    const unique = new Set(this.movies.map((movie) => movie.genre));
+    const unique = new Set(this.movies.flatMap((movie) => this.getMovieGenres(movie)));
     return [this.allGenres, ...Array.from(unique).sort()];
   }
 
   get filteredMovies(): Movie[] {
     const term = this.searchText.trim().toLowerCase();
     return this.movies.filter((movie) => {
-      const matchesGenre = this.selectedGenre === this.allGenres || movie.genre === this.selectedGenre;
+      const matchesGenre = this.selectedGenre === this.allGenres || this.getMovieGenres(movie).includes(this.selectedGenre);
       const matchesText = !term || movie.title.toLowerCase().includes(term);
       return matchesGenre && matchesText;
     });
@@ -78,6 +78,10 @@ export class MoviesPage implements OnInit {
   selectGenre(genre: string): void {
     this.selectedGenre = genre;
     this.changeDetector.detectChanges();
+  }
+
+  getMovieGenres(movie: Movie): string[] {
+    return movie.genre.split(',').map((genre) => genre.trim()).filter(Boolean);
   }
 
   async toggleFavorite(movie: Movie): Promise<void> {

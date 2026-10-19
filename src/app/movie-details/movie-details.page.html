@@ -6,7 +6,12 @@
       <ion-card>
         <img class="poster" [src]="movie.poster" [alt]="movie.title">
         <ion-card-content>
-          <p class="eyebrow">{{ movie.genre }} / {{ movie.year }}</p>
+          <div class="eyebrow">
+            @for (genre of getMovieGenres(); track $index) {
+            <ion-chip>{{ genre }}</ion-chip>
+            }
+            <span>/ {{ movie.year }}</span>
+          </div>
           <h1>{{ movie.title }}</h1>
           <p class="overview">{{ movie.overview }}</p>
           <ion-button expand="block" [color]="isFavorite() ? 'warning' : 'primary'" (click)="toggleFavorite()">

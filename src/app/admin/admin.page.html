@@ -6,7 +6,13 @@
   <h2>Ajouter un film</h2>
   <ion-item><ion-label position="stacked">Titre</ion-label><ion-input [(ngModel)]="title"></ion-input></ion-item>
   <ion-item><ion-label position="stacked">Année</ion-label><ion-input type="number" [(ngModel)]="year"></ion-input></ion-item>
-  <ion-item><ion-label position="stacked">Genre</ion-label><ion-input [(ngModel)]="genre"></ion-input></ion-item>
+  <ion-item><ion-label position="stacked">Genre</ion-label><ion-input [(ngModel)]="genreInput"
+      (keyup.enter)="addGenre()" placeholder="Appuyez sur Entrée pour ajouter"></ion-input></ion-item>
+  <div class="genre-chips">
+    @for (genre of genres; track $index) {
+    <ion-chip (click)="removeGenre($index)" color="primary">{{ genre }}</ion-chip>
+    }
+  </div>
   <ion-item><ion-label position="stacked">URL affiche</ion-label><ion-input [(ngModel)]="poster"></ion-input></ion-item>
   <ion-item><ion-label position="stacked">Résumé</ion-label><ion-input [(ngModel)]="overview"></ion-input></ion-item>
   <ion-button expand="block" class="ion-margin-top" (click)="addMovie()">Ajouter</ion-button>
