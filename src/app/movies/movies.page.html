@@ -17,8 +17,8 @@
       [value]="searchText" (input)="onSearch($event)">
     <div class="genre-chips">
       @for (genre of genres; track genre) {
-      <button type="button" class="chip" [class.active]="genre === selectedGenre" (click)="selectGenre(genre)">{{ genre
-        }}</button>
+      <ion-button fill="clear" class="chip" [class.active]="genre === selectedGenre"
+        (click)="selectGenre(genre)">{{ genre }}</ion-button>
       }
     </div>
     <p class="result-count">{{ filteredMovies.length }} film(s)</p>
