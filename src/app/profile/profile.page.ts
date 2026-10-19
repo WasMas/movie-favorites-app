@@ -10,6 +10,7 @@ import {
   IonLabel,
   IonTitle,
   IonToolbar,
+  ToastController,
 } from '@ionic/angular';
 import { AppUser } from '../models/movie.model';
 import { AuthService } from '../services/auth.service';
@@ -41,6 +42,7 @@ export class ProfilePage implements OnInit {
   private photos = inject(PhotosService);
   private router = inject(Router);
   private changeDetector = inject(ChangeDetectorRef);
+  private toastController = inject(ToastController);
 
   async ngOnInit(): Promise<void> {
     this.user = await this.auth.getCurrentUserAsync() || undefined;
@@ -64,15 +66,27 @@ export class ProfilePage implements OnInit {
     if (!this.user.firstName || !this.user.lastName || !this.user.email || this.user.age < 1) {
       this.error = 'Veuillez remplir tous les champs correctement.';
       this.message = '';
+      await this.presentToast(this.error, 'danger');
       return;
     }
     this.error = await this.auth.updateUser(this.user) || '';
     this.message = this.error ? '' : 'Profil mis à jour.';
+    await this.presentToast(this.error || this.message, this.error ? 'danger' : 'success');
     this.changeDetector.detectChanges();
   }
 
   async logout(): Promise<void> {
     await this.auth.logout();
     this.router.navigateByUrl('/login');
+  }
+
+  private async presentToast(message: string, color: 'danger' | 'success'): Promise<void> {
+    const toast = await this.toastController.create({
+      message,
+      duration: 1500,
+      position: 'bottom',
+      color,
+    });
+    await toast.present();
   }
 }

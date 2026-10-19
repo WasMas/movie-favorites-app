@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonList, IonTitle, IonToolbar } from '@ionic/angular';
+import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonList, IonTitle, IonToolbar, ToastController } from '@ionic/angular';
 import { AppUser, Movie } from '../models/movie.model';
 import { AuthService } from '../services/auth.service';
 import { MovieService } from '../services/movie.service';
@@ -20,6 +20,7 @@ export class AdminPage implements OnInit {
   private movies = inject(MovieService);
   private router = inject(Router);
   private changeDetector = inject(ChangeDetectorRef);
+  private toastController = inject(ToastController);
 
   async ngOnInit(): Promise<void> {
     const user = await this.auth.getCurrentUserAsync();
@@ -35,9 +36,26 @@ export class AdminPage implements OnInit {
   }
 
   async addMovie(): Promise<void> {
-    if (!this.title || !this.genre || !this.poster) { this.message = 'Remplissez le titre, le genre et l’affiche.'; return; }
+    if (!this.title || !this.genre || !this.poster) {
+      this.message = 'Remplissez le titre, le genre et l’affiche.';
+      await this.presentToast(this.message, 'danger');
+      return;
+    }
     const movie: Movie = { id: 0, title: this.title, year: this.year, genre: this.genre, poster: this.poster, overview: this.overview };
-    await this.movies.addMovie(movie); this.message = 'Film ajouté au catalogue.'; this.title = ''; this.genre = ''; this.poster = ''; this.overview = '';
+    await this.movies.addMovie(movie);
+    this.message = 'Film ajouté au catalogue.';
+    await this.presentToast(this.message, 'success');
+    this.title = ''; this.genre = ''; this.poster = ''; this.overview = '';
     this.changeDetector.detectChanges();
+  }
+
+  private async presentToast(message: string, color: 'danger' | 'success'): Promise<void> {
+    const toast = await this.toastController.create({
+      message,
+      duration: 1500,
+      position: 'bottom',
+      color,
+    });
+    await toast.present();
   }
 }
